@@ -3,20 +3,28 @@
     <div class="btn-senha" @click="modalAberto = true">Esqueci minha senha</div>
     <div v-if="modalAberto">
       <div class="background-modal" @click="modalAberto = false"></div>
-      
+
       <div class="modal">
         <div class="modal-conteudo">
-          <div class="form-container">
-            <div class="logo-container">
-              Recuperar senha
+          <div class="login-body">
+            <div class="login-content">
+              <div data-uia="password-reset-wrapper">
+                <h1 data-uia="password-reset-header">Esqueci minha senha</h1>
+                <p data-uia="password-reset-subheader">Digite o seu Email cadastrado</p>
+                <div>
+                  <p data-uia="email-description">Enviaremos um email com instruções de como redefinir sua senha.</p>
+                  <div class="contact-input-wrapper">
+                    <label class="contact-method-input ui-label ui-input-label" id="lbl-forgot_password_input">
+                      <span class="ui-label-text"></span>
+                      <input type="email" data-uia="forgot_password_input" class="ui-text-input"
+                        name="forgot_password_input" id="forgot_password_input" value="" placeholder="nome@exemplo.com"
+                        tabindex="0"></label>
+                  </div>
+                </div>
+                <button class="btn forgot-password-action-button btn-blue btn-large" type="button" autocomplete="off"
+                  tabindex="0" data-uia="action_forgot_password">Enviar por email</button>
+              </div>
             </div>
-            <form class="form">
-              <div class="form-group">
-                <label for="email" id="form-email" style="align-self: center; color: black; font-weight: bold;">Digite seu cadastrado</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu email">
-              </div>  
-              <button class="form-submit-btn" type="submit">Enviar Email</button>
-            </form>
           </div>
         </div>
       </div>
@@ -40,11 +48,12 @@ export default {
 
 <style>
 .btn-senha {
-  color: rgb(171, 44, 171); 
+  color: rgb(0, 0, 0);
   font-weight: bold;
   width: fit-content;
-  cursor: pointer; 
+  cursor: pointer;
 }
+
 .modal {
   position: absolute;
   left: 50%;
@@ -62,91 +71,159 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-.form-container {
-  width: 20vw;
-  background-color: #fff;
-  padding: 32px 24px;
-  font-size: 14px;
-  font-family: sans-serif;
-  color: #212121;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
-}
-.form-container button:active {
-  scale: 0.95;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,regular,italic,500,700);
+
+body {
+  font-family: "Roboto";
+  font-size: 16px;
 }
 
-.form-container .logo-container {
-  text-align: center;
-  font-weight: 600;
-  font-size: 30px;
-  font-family:sans-serif;
+.login-body {
+  background-color: transparent;
+  color: #333;
 }
 
-.form-container .form {
-  display: flex;
-  flex-direction: column;
+* {
+  letter-spacing: 0 !important;
 }
 
-.form-container .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+div {
+  display: block;
 }
 
-.form-container .form-group label {
-  display: flex;
-  margin-bottom: 1vh;
+.login-content {
+  min-width: 380px;
+  padding: 40px;
+  background-color: #f3f3f3;
 }
 
-.form-container .form-group input {
-  width: auto;
-  height: 100%;
-  padding: 12px;
-  border-radius: 6px;
-  font-family: sans-serif;
-  border: 1px solid black;
-  margin-top: 1em;
-  text-align: left;
+h1 {
+  margin-bottom: 20px;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 2em;
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  font-family: "Roboto";
 }
 
-.form-container .form-group input:focus {
-  outline: none;
-  border-color: red;
-  transition: all 250ms ease;
-  transform: scale(1.02);
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+optgroup,
+strong {
+  font-weight: 500;
+  font-family: "Roboto";
+  font-weight: bold;
 }
 
-.form-container .form-submit-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: inherit;
-  color: #fff;
-  background-color: #212121;
-  border: none;
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: "Roboto";
+}
+
+.contact-method-input {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.ui-input-label {
+  position: relative;
+}
+
+.ui-label,
+.ui-label-no-margin {
+  color: grey;
+  display: block;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+label {
+  cursor: default;
+}
+
+.contact-method-input .ui-text-input {
+  max-width: none;
   width: 100%;
-  padding: 12px 16px;
-  font-size: inherit;
-  gap: 8px;
-  margin-top: 2em;
-  cursor: pointer;
-  border-radius: 6px;
 }
 
-.form-container .form-submit-btn:hover {
-  background-color: red;
-  transform: scale(1.02);
-  transition: all 250ms ease;
-  
+.input-password-input,
+.ui-text-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #b3b3b3;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #000;
+  display: block;
+  font-size: 16px;
+  height: 44px;
+  max-width: 500px;
+  padding: 10px 11px;
+  width: 100%;
 }
 
-.form-container .link:hover {
-  text-decoration: underline;
+input {
+  line-height: normal;
 }
 
-</style>
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+input[type="email" i] {
+  padding-block: 1px;
+  padding-inline: 2px;
+}
+
+.forgot-password-action-button.btn-large {
+  width: 100%;
+}
+
+.btn {
+  font-size: 20px;
+  min-height: 48px;
+  min-width: 112px;
+  padding: 14px 2em;
+  background-color: #0080ff;
+  border: none;
+  color: white;
+  font-weight: bold
+}
+
+.btn:hover {
+  scale: 1.01;
+  color: black;
+}</style>
