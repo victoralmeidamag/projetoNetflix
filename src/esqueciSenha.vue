@@ -203,9 +203,10 @@ textarea {
   margin: 0;
 }
 
-input[type="email" i] {
+input[type="email"] {
   padding-block: 1px;
   padding-inline: 2px;
+  padding: 10px;
 }
 
 .forgot-password-action-button.btn-large {
